@@ -5,6 +5,8 @@
 ## so that if necessary, the inverse of vaor be obtained without the need 
 ## for recalculation, saving computational time.
 
+## Creates an object containing a matrix and its inverse from a original matrix, and
+## return this object
 makeCacheMatrix <- function(x = matrix()) {
         s <- NULL
         set <- function(y) {
