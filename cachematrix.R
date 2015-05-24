@@ -1,35 +1,39 @@
-## Put comments here that give an overall description of what your
-## functions do
-
-## Write a short comment describing this function
+## It contains two functions, one that creates an object that stores a matrix and 
+## its inverse and another function that takes this object, 
+## and calculates the inverse matrix, if it does not exist. 
+## The objective is to store the inverse of a matrix in a special object, 
+## so that if necessary, the inverse of vaor be obtained without the need 
+## for recalculation, saving computational time.
 
 makeCacheMatrix <- function(x = matrix()) {
-        m <- NULL
+        s <- NULL
         set <- function(y) {
                 x <<- y
-                m <<- NULL
+                s <<- NULL
         }
         get <- function() x
-        setmean <- function(mean) m <<- mean
-        getmean <- function() m
+        setsolve <- function(w) s <<- w
+        getsolve <- function() s
         list(set = set, get = get,
-             setmean = setmean,
-             getmean = getmean)
+             setsolve = setsolve,
+             getsolve = getsolve)
 }
 
 
-## Write a short comment describing this function
+## Receives a parameter related to an matrix, calculates its inverse if 
+## it does not already have and return inverse. Where the matrix has an inverse already calculated, 
+## the inverse stored is returned.
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
-		##teste dois e tres, quarto
-     m <- x$getmean()
+		
+     m <- x$getsolve()
         if(!is.null(m)) {
                 message("getting cached data")
                 return(m)
         }
         data <- x$get()
-        m <- mean(data, ...)
-        x$setmean(m)
+        m <- solve(data)
+        x$setsolve(m)
         m		
 }
